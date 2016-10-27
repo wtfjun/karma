@@ -14,3 +14,9 @@ package.json中加入这个"start": "NODE_ENV=development webpack-dev-server --h
     "babel-preset-es2015": "^6.16.0",
     "babel-preset-react": "^6.16.0"
     babel依赖，react以及一些库需要
+
+主要探讨
+		componentDidMount
+		componentWillUpdate
+		componentWillReceiveProps
+的使用
