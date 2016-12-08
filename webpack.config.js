@@ -8,7 +8,7 @@ module.exports = {
 		contentBase: "./src/html"
   },
 	entry: {
-		index: './src/js/index.js'
+		index: './src/router.js'
 	},
 	output: {
 		path: './dist',
@@ -18,7 +18,7 @@ module.exports = {
 	module: {
     loaders: [{
     		test: /\.css$/,
-    		loader: ExtractTextPlugin.extract('style', 'css') 
+    		loader: ExtractTextPlugin.extract('style', 'css?-url') 
     	}, { 
     		test: /\.less$/, 
     		loader: ExtractTextPlugin.extract('css!less') 
@@ -26,6 +26,9 @@ module.exports = {
 	      test: /\.js$/,
 	      exclude: /node_modules/,
 	      loaders: ['react-hot-loader/webpack', 'babel?presets[]=react,presets[]=es2015']
+    	}, { 
+    		test: /\.(png|jpg)$/, 
+    		loader: 'url?limit=8192&name=img/[name].[ext]' 
     	}
     ]
   },
