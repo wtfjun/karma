@@ -11,7 +11,7 @@ module.exports = {
         vendors:['react','react-dom','react-router']
     },
     output: {
-        path: './t/public/',
+        path: './karmaClient/public/',
         publicPath: '/',
         filename: 'js/index.js'
     },

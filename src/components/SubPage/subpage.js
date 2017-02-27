@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import $ from 'jquery'
 import Grid from 'react-bootstrap/lib/Grid'
+import { CONFIG } from '../../config.js'
 
 import TopImg from './top-img.jpg'
 import './subpage.less'
@@ -14,7 +15,7 @@ export default class subpage extends Component {
 		let title = this.props.params.title
 
 		$.ajax({
-			url: 'http://121.42.204.70:3000/api/subpage',
+			url: CONFIG.server+'/api/subpage',
 			dataType: 'jsonp',
 			data: {
 				callback: '?',

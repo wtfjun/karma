@@ -9,6 +9,7 @@ import Button from 'react-bootstrap/lib/Button'
 import ControlLabel from 'react-bootstrap/lib/ControlLabel'
 import Checkbox from 'react-bootstrap/lib/Checkbox'
 import $ from 'jquery'
+import { CONFIG } from '../../config'
 
 import TopImg from '../SubPage/top-img.jpg'
 import './contact.less'
@@ -47,7 +48,7 @@ export default class contact extends Component {
 			return
 		}
 		$.ajax({
-			url: 'http://121.42.204.70:3000/api/message',
+			url: CONFIG.server+'/api/message',
 			dataType: 'jsonp',
 			data: {
 				name: name,
@@ -139,27 +140,24 @@ export default class contact extends Component {
 						</Col>
 
 						<Col md={6} xs={12}>
-							<h1>Contact</h1>
+							<h1>联系我们</h1>
 
-							<p>Here at Karma Developers, we strive to provide a professional and personalized service that meets the precise requirements and expectations of each and every client. Our proficient and experienced sales team are here to listen and advise through every step of the property purchase process and beyond. We pride ourselves on building long-lasting client relationships whilst endeavoring to match every individual client with their dream property.</p>
+							<p>Karma Developers，我们努力提供一个专业和个性化的服务，以满足每一位客户的要求和期望。我们经验丰富的销售团队会在这里听取您的需求和建议。我们建立持久的客户关系的同时，努力助力每位客户寻找梦想家园。</p>
 
 
 							<p>
-								For further information or questions about any of our properties, 
-								please feel free to drop us an email and we’ll get 
-								right back to you with details tailored to your exact needs.
+								如您需要更详尽的信息或对我们的项目有任何疑问，欢迎发送电子邮件给我们，我们会据您的需求给予细致的解答。
+
 								<hr style={{ borderColor: '#C2C2C2'}} />
 							</p>
 
 							<p>
 								Karma Developers<br />
-								16 Kennedy Avenue, (Kapparis),<br />
-								5290 Paralimni,<br />
-								Cyprus<br />
+								客服热线：+86-18344026268<br />
+								客服邮箱：info@karma-hk.com<br /><br />
+								English-language：<a href="http://karmadevelopers.com/">http://karmadevelopers.com/</a>
+<br />
 							
-								<b>T</b>: + 357 23 730 777<br />
-								<b>F</b>: + 357 23 730 778<br />
-								<b>E</b>: sales@karmadevelopers.com.cy
 							</p>
 						</Col>
 					</Row>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {Link} from 'react-router'
 import $ from 'jquery'
 import Carousel from 'react-bootstrap/lib/Carousel'
 import Grid from 'react-bootstrap/lib/Grid'
@@ -6,9 +7,16 @@ import Row from 'react-bootstrap/lib/Row'
 import Col from 'react-bootstrap/lib/Col'
 
 import './home.less'
-import HomeCarouselImg1 from '../../img/home.jpg'
-import HomeCarouselImg2 from '../../img/home2.jpg'
-import HomeCarouselImg3 from '../../img/home3.jpg'
+import { CONFIG } from '../../config'
+import HomeCarouselImg1 from '../../img/1.jpg'
+import HomeCarouselImg2 from '../../img/2.jpg'
+import HomeCarouselImg3 from '../../img/3.jpg'
+import HomeCarouselImg4 from '../../img/4.jpg'
+import HomeCarouselImg5 from '../../img/5.jpg'
+import HomeCarouselImg6 from '../../img/6.jpg'
+import HomeCarouselImg7 from '../../img/7.jpg'
+import HomeCarouselImg8 from '../../img/8.jpg'
+import HomeCarouselImg9 from '../../img/9.jpg'
 import Fp1 from '../../img/fp1.jpg'
 import Fp2 from '../../img/fp2.jpg'
 import Fp3 from '../../img/fp3.jpg'
@@ -22,18 +30,20 @@ import Man3 from '../../img/man3.png'
 export default class header extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {
+		this.state = {  
 			projects: []
 		}
 	}
 
 	componentDidMount() {
 		let that = this
+		console.log(CONFIG)
 		$.ajax({
-			url: 'http://localhost:3000/api/fourProjects?callback=?',
+			url: CONFIG.server+'/api/fourProjects?callback=?',
 			dataType: 'jsonp',
 		})
 		.done(function(data) {
+			console.log(data)
 			if(data.status == 'success') {
 				that.setState({
 					projects: data.projects
@@ -55,10 +65,6 @@ export default class header extends Component {
 			  <Carousel controls={false}>
 			    <Carousel.Item>
 			      <img src={HomeCarouselImg1}/>
-			      <Carousel.Caption>
-			        {/*<h3>First slide label</h3>
-			        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>*/}
-			      </Carousel.Caption>
 			    </Carousel.Item>
 			    <Carousel.Item>
 			      <img src={HomeCarouselImg2}/>
@@ -66,16 +72,37 @@ export default class header extends Component {
 			    <Carousel.Item>
 			      <img src={HomeCarouselImg3}/>
 			    </Carousel.Item>
+			    <Carousel.Item>
+			      <img src={HomeCarouselImg4}/>
+			    </Carousel.Item>
+			    <Carousel.Item>
+			      <img src={HomeCarouselImg5}/>
+			    </Carousel.Item>
+			    <Carousel.Item>
+			      <img src={HomeCarouselImg6}/>
+			    </Carousel.Item>
+			    <Carousel.Item>
+			      <img src={HomeCarouselImg7}/>
+			    </Carousel.Item>
+			    <Carousel.Item>
+			      <img src={HomeCarouselImg8}/>
+			    </Carousel.Item>
+			    <Carousel.Item>
+			      <img src={HomeCarouselImg9}/>
+			    </Carousel.Item>
+
 			  </Carousel>
 			  <section className="featured-projects">
 			  	<Grid>
 				    <Row className="show-grid">
-				      <Col md={12}><h2 className="header-spacer text-center">Featured Projects</h2></Col>
+				      <Col md={12}><h2 className="header-spacer text-center">精选项目</h2></Col>
 				      {this.state.projects.map((project) => 
 				      <Col md={6} className="featured-item">
-				      	<img src={'http://localhost:3000'+project.imgs[0]} />
+				      	<Link to={"/properties/"+project.name}>
+				      		<img src={CONFIG.server+project.imgs[0]} />
+				      	</Link>
 				      	<h4>
-				      		<a href="">{project.name}</a>
+				      		<Link to={"/properties/"+project.name}>{project.name}</Link>
 				      	</h4>
 				      	<p>
 				      		{project.intro.slice(0,350) + '...'}
@@ -85,49 +112,11 @@ export default class header extends Component {
 				    </Row>
 				  </Grid>
 			  </section>
-			  <aside className="callout">
-			  	
-			  </aside>
-			  <section className="information">
-			  	<Grid>
-			  		<Col md={12}><h2 className="header-spacer text-center">Information</h2></Col>
-			  		<Col md={4}>
-			  			<img src={Infor1} />
-			  			<h4 className="text-center">About Cyprus</h4>
-			  		</Col>
-			  		<Col md={4}>
-			  			<img src={Infor2} />
-			  			<h4 className="text-center">Financing</h4>
-			  		</Col>
-			  		<Col md={4}>
-			  			<img src={Infor3} />
-			  			<h4 className="text-center">Buying Process</h4>
-			  		</Col>
-			  	</Grid>
-			  </section>
-			  <section className="testimonials">
-			  	<Grid>
-			  		<Col md={12}><h2 className="header-spacer text-center">Testimonials</h2></Col>
-			  		<Col md={4}>
-			  			<p>Thanking  Karma team for all their help, they made our experience a pleasure  and have made us feel like they are part of our family, they are the best!</p>
-			  			<img src={Man1} />
-			  			<span className="man-name">Viviane Matta</span>
-			  		</Col>
-			  		<Col md={4}>
-			  			<p>Karma DevelopmentsDevelopments The trustworthy people with The professional capabilities in the Cypriot Market! An Organization you can TRUST!</p>
-			  			<img src={Man2} />
-			  			<span className="man-name">Viviane Matta</span>
-			  		</Col>
-			  		<Col md={4}>
-			  			<p>What attracted me to Karma was that the quality of their work and the elegant designs of their properties, as well as their personal touch and friendly attitude.</p>
-			  			<img src={Man3} />			
-			  			<span className="man-name">Viviane Matta</span>
-			  		</Col>
-			  	</Grid>
-			  </section>
+			  
 			  <aside className="callout-bottom">
-			  	<h2 className="header-spacer text-center">Get to know Karma</h2>
-			  	<p>Established in 1985, Karma Developers is the founding member of the Karma Group of Companies, constructing quality properties along the desirable east coast of Cyprus.Today, we have constructed, sold and delivered more than 70 separate projects and continue to progress and prosper with new and unique property developments.</p>
+			  	<h2 className="header-spacer text-center">Karma概况</h2>
+			  	<p>成立于1985年，Karma Developers是Karma企业集团的创始成员，在美丽的塞浦路斯东海岸建设高品质的房产项目。             
+  迄今为止，我们已经建成、出售并交付了超过70个房产项目，继续推动和促进新颖独特的新房产开发。</p>
 			  </aside>
 		  </div>
 		)

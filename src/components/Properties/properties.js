@@ -4,6 +4,7 @@ import {Link} from 'react-router'
 import Grid from 'react-bootstrap/lib/Grid'
 import Row from 'react-bootstrap/lib/Row'
 import Col from 'react-bootstrap/lib/Col'
+import { CONFIG } from '../../config.js'
 
 import TopImg from '../SubPage/top-img.jpg'
 import './properties.less'
@@ -18,7 +19,7 @@ export default class subpage extends Component {
 	componentDidMount() {
 		let that = this
 		$.ajax({
-			url: 'http://121.42.204.70:3000/api/allProjects?callback=?',
+			url: CONFIG.server+'/api/allProjects?callback=?',
 			dataType: 'jsonp',
 		})
 		.done(function(data) {
@@ -49,13 +50,15 @@ export default class subpage extends Component {
 						<Col md={4}>
               <div className="image-wrapper">
                 <Link to={"/properties/"+project.name}>
-                  <img src={"http://121.42.204.70:3000"+project.imgs[0]} />
+                  <img src={CONFIG.server+project.imgs[0]} />
                 </Link>
               </div>
 						</Col>
 						<Col md={8}>
 							<h3>{project.name}</h3>
-							<p>{project.intro.slice(0,350)}<a className="read-more">...read more</a></p>
+							<p>{project.intro.slice(0,350)}
+								<Link to={"/properties/"+project.name} className="read-more">...read more</Link>
+							</p>
 						</Col>
 					</Row>
 				</Grid>

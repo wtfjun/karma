@@ -9,7 +9,7 @@ export default class footer extends Component {
 	render() {
 		return (
 			<footer>
-				<p>诚也科技 © 2002－2016 </p>
+				<p>Copyright © 2017. All Rights Reserved. </p>
 			</footer>
 		)
 	}
